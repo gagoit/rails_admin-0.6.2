@@ -1,4 +1,5 @@
-require 'font-awesome-rails'
+require 'bootstrap-sass'
+require 'font-awesome-sass-rails'
 require 'jquery-rails'
 require 'jquery-ui-rails'
 require 'kaminari'
