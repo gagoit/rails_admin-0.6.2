@@ -84,7 +84,14 @@ module RailsAdmin
       associations.each do |association|
         case association.type
         when :has_one
-          if child = association.association.class_name.constantize.unscoped.find_by_id(object.send("#{association.name}_id")) 
+          child_id = object.send("#{association.name}_id")
+          child = if child_id.present?
+            association.association.class_name.constantize.unscoped.find(child_id) rescue nil
+          else
+            nil
+          end
+
+          if child_id && child
             yield(association, child)
           end
         when :has_many
