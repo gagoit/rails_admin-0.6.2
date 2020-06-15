@@ -26,8 +26,7 @@ module RailsAdmin
               @objects = list_entries(@model_config, :destroy)
               processed_objects = @abstract_model.destroy(@objects)
 
-              first_obj = processed_objects.first
-              destroyed = first_obj && first_obj.respond_to?(:soft_destroyed?) ? processed_objects.select(&:soft_destroyed?) : processed_objects.select(&:destroyed?)
+              destroyed = processed_objects
               not_destroyed = processed_objects - destroyed
 
               destroyed.each do |object|
