@@ -98,7 +98,7 @@ module RailsAdmin
           o = a.send(:eval, 'bindings[:object]')
           content_tag(:li, class: current_action?(a, am, o) && 'active') do
             crumb = if a.http_methods.include?(:get)
-              link_to url_for(action: a.action_name, controller: 'rails_admin/main', model_name: am.try(:to_param), id: (!o.try(:new_record?) && o.try(:id) || nil)), class: 'pjax' do
+              link_to url_for(action: a.action_name, controller: 'rails_admin/main', model_name: am.try(:to_param), id: (o.try(:persisted?) && o.try(:id) || nil)), class: 'pjax' do
                 wording_for(:breadcrumb, a, am, o)
               end
             else
